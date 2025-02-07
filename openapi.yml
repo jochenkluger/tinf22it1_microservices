@@ -1,0 +1,88 @@
+openapi: 3.0.3
+info:
+  title: Thesis 
+  description: desc
+  version: 0.0.1
+paths:
+  /api/v0/thesis:
+    get:
+      summary: List all theses
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ThesisSummary'
+  /api/v0/thesis/{id}:
+    get:
+      summary: Gets information for a thesis by id
+      parameters:
+        - name: id
+          in: path
+          description: The thesis id
+          required: true
+          schema:
+            type: integer
+            format: int64
+            example: 12345
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Thesis'
+components:
+  schemas:
+    Thesis:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          example: 38729
+        studentId:
+          type: integer
+          format: int64
+          example: 198772
+        title:
+          type: string
+        studentFirstName:
+          type: string
+          example: Max
+        studentLastName:
+          type: string
+          example: Mustermann
+        # TODO properties from form
+        # TODO status
+    ThesisSummary:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          example: 38729
+        title:
+          type: string
+        studentFirstName:
+          type: string
+        studentLastName:
+          type: string
+        # TODO status
+    User:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          example: 83791
+        firstName:
+          type: string
+        lastName:
+          type: string
+
+  # requestBodies:
+  # securitySchemes:
